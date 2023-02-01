@@ -135,8 +135,8 @@ def BoxGaussianUsharpFilters(image):
     
 def main():
     
-    path = "/home/carlos/Documents/SwapDS/dataset/"
-    name_image = "Rafd090_01_Caucasian_female_angry_left.jpg"
+    path = "directory/"
+    name_image = "filename"
 
     image = ImportImage(path,name_image)
     print(image.mode)
