@@ -2,33 +2,50 @@
 
 Obs: was made some modifications like functions to dont use comments
 '''
-from PIL import Image
+from PIL import Image, ImageColor
 
-def import_image(way, name):
+def ImportImage(way, name):
     imported_image = Image.open(way+name)
     return imported_image
 
-def save_and_print_image(image,path,name_image):
+def SaveAndPrintImage(image,path,name_image):
     image.show()
     image.save(path+name_image)
     
-def create_new_image(length, width):
+def CreateNewImage(length, width):
     image_blank = Image.new("RGBA",(length,width))
     return image_blank
 
-def informations_image(image):
+def InformationsImage(image):
+    image.show()
     print(image.size)
-    print(image.filename)
-    print(image.format)
-    print(image.format_description)
+    
+def ImageRotate(image):
+    image_rotate = image.rotate(-60, expand=True, fillcolor = ImageColor.getcolor('red','RGB'))#fillcolor = (0,0,255))#(red,green,blue))
+    print(ImageColor.getcolor('red', 'RGB'))
+    image_rotate.show()
+
+def FocousPart(image, left_x, top_y, right_x, bottom_y):
+    image_crop = image.crop((left_x,top_y,right_x,bottom_y))
+    InformationsImage(image_crop)
+    
+def FlipHorizontalAndVertical(image):
+    InformationsImage(image.transpose(Image.Transpose.FLIP_LEFT_RIGHT))
+    InformationsImage(image.transpose(Image.Transpose.FLIP_TOP_BOTTOM))
+    
+def ResizeImage(image, length, width):
+    InformationsImage(image.resize((length, width)))
     
 def main():
-    path = "/home/..."
-    name_image = "Filename.jpg"
+    path = "/home/carlos/Documents/SwapDS/dataset/"
+    name_image = "Rafd090_01_Caucasian_female_angry_left.jpg"
     
-    image = import_image(path,name_image)
-        
-    image_blank = create_new_image(1000,600)
+    image = ImportImage(path,name_image)
+    
+    #image_crop = FocousPart(image, 55, 40, 500, 400)
+    ResizeImage(image, 10000,10000)
+    
+    
     
 if __name__ == "__main__":
     main()
