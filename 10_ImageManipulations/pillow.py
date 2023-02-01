@@ -9,7 +9,6 @@ def ImportImage(way, name):
     return imported_image
 
 def SaveAndPrintImage(image,path,name_image):
-    image.show()
     image.save(path+name_image)
     
 def CreateNewImage(length, width):
@@ -34,7 +33,11 @@ def FlipHorizontalAndVertical(image):
     InformationsImage(image.transpose(Image.Transpose.FLIP_TOP_BOTTOM))
     
 def ResizeImage(image, length, width):
-    InformationsImage(image.resize((length, width)))
+    return InformationsImage(image.resize((length, width)))
+    
+def DoubleResolution(scale_factor, image):
+    return image.resize((image.size[0] * scale_factor, image.size[1] * scale_factor))
+    
     
 def main():
     path = "/home/carlos/Documents/SwapDS/dataset/"
@@ -42,8 +45,11 @@ def main():
     
     image = ImportImage(path,name_image)
     
-    #image_crop = FocousPart(image, 55, 40, 500, 400)
-    ResizeImage(image, 10000,10000)
+    InformationsImage(image)
+    
+    image_double_resolution = DoubleResolution(2, image)
+    SaveAndPrintImage(image_double_resolution, path, "fifithresolution.jpg")
+    InformationsImage(image_double_resolution)
     
     
     
