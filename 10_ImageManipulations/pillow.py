@@ -23,8 +23,8 @@ def informations_image(image):
     print(image.format_description)
     
 def main():
-    path = "/home/carlos/Documents/SwapDS/dataset/"
-    name_image = "Rafd090_01_Caucasian_female_angry_left.jpg"
+    path = "/home/..."
+    name_image = "Filename.jpg"
     
     image = import_image(path,name_image)
         
